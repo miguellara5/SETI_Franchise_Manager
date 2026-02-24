@@ -1,13 +1,13 @@
 package co.com.bancolombia.model.product;
 import co.com.bancolombia.model.exceptions.DomainErrorCode;
 import co.com.bancolombia.model.exceptions.DomainValidation;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Builder(toBuilder = true)
+@ToString
 public class Product {
     private String name;
     private Integer stock;
