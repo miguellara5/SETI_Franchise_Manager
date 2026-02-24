@@ -89,50 +89,6 @@ Franquicia
 
 ---
 
-## 🏗️ Arquitectura
-
-### Arquitectura Hexagonal (Clean Architecture)
-
-```
-┌─────────────────────────────────────────────────────┐
-│              📡 ENTRY POINTS (Adaptadores)          │
-│  - HandlerV1 / HandlerV2 (Controladores)           │
-│  - RouterRest (Definición de rutas)                │
-└─────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────┐
-│         🧠 DOMAIN (Lógica de Negocio)              │
-│  - FranchiseUseCase (Orquestación)                 │
-│  - Entidades (Franchise, Branch, Product)          │
-│  - Puertos (Gateways/Interfaces)                  │
-└─────────────────────────────────────────────────────┘
-                          ↓
-┌─────────────────────────────────────────────────────┐
-│      💾 DRIVEN ADAPTERS (Implementaciones)         │
-│  - MongoRepositoryAdapter (Implementa Gateways)   │
-│  - MongoDB (Base de datos)                        │
-└─────────────────────────────────────────────────────┘
-```
-
-### Capas del Proyecto
-
-```
-applications/
-├── app-service/          # Spring Boot Application (Capa de Ensamblaje)
-│   └── MainApplication   # Punto de entrada
-
-domain/
-├── model/               # Entidades y gateways (Puertos)
-└── usecase/            # Lógica de negocio
-
-infrastructure/
-├── entry-points/
-│   └── reactive-web/   # Adaptadores de entrada (HTTP)
-└── driven-adapters/
-    └── mongo-repository/ # Adaptadores de salida (BD)
-```
-
----
 
 ## ✅ Requisitos Cumplidos
 
@@ -378,33 +334,6 @@ git push origin feature/nueva-funcionalidad
 - ✅ Validación de entrada en DTOs
 - ✅ Logging seguro (sin credenciales en logs)
 
----
 
-## 📞 Contacto & Soporte
 
-Para reportar bugs o sugerencias:
-1. Usar Issues en GitHub
-2. Incluir stack trace completo
-3. Describir pasos para reproducir
-
----
-
-## 📄 Licencia
-
-MIT License - Libre para usar en proyectos personales y comerciales.
-
----
-
-## ✨ Próximas Mejoras
-
-- [ ] Implementar caché con Redis
-- [ ] Autenticación JWT
-- [ ] Rate limiting
-- [ ] API Documentation (Swagger)
-- [ ] GraphQL alternative
-- [ ] Kubernetes deployment files
-
----
-
-**Última actualización:** Febrero 24, 2026
 
