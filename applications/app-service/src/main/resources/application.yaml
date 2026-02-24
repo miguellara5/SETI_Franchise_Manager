@@ -5,12 +5,6 @@ spring:
     name: "FranchiseManagerApi"
   devtools:
     add-properties: false
-  h2:
-    console:
-      enabled: true
-      path: "/h2"
-  profiles:
-    include: null
 management:
   endpoints:
     web:
@@ -20,5 +14,3 @@ management:
     health:
       probes:
         enabled: true
-cors:
-  allowed-origins: "http://localhost:4200,http://localhost:8080"
