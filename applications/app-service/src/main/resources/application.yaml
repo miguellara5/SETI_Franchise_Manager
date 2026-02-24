@@ -1,11 +1,16 @@
+server:
+  port: 8080
 spring:
   application:
-    name: "franchise-api"
+    name: "FranchiseManagerApi"
+  devtools:
+    add-properties: false
+  h2:
+    console:
+      enabled: true
+      path: "/h2"
   profiles:
-    active: "dev"
-  data:
-    mongodb:
-      uri: "mongodb://localhost:27017/test"
+    include: null
 management:
   endpoints:
     web:

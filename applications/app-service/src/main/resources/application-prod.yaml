@@ -1,0 +1,29 @@
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: "${SPRING_DATA_MONGODB_URI}"
+  h2:
+    console:
+      enabled: false
+
+logging:
+  level:
+    org.springframework.web.reactive.function.server: INFO
+    org.springframework.data.mongodb: INFO
+    co.com.bancolombia: INFO
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+cors:
+  allowed-origins: "${CORS_ALLOWED_ORIGINS}"
