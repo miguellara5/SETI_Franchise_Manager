@@ -1,5 +1,5 @@
 # Stage 1: Build
-FROM eclipse-temurin:21-jdk-alpine AS builder
+FROM eclipse-temurin:25-jdk-alpine AS builder
 WORKDIR /build
 COPY . .
 RUN apk add --no-cache bash git
@@ -7,7 +7,7 @@ RUN chmod +x gradlew
 RUN ./gradlew bootJar -x test --no-daemon
 
 # Stage 2: Runtime
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:25-jre-alpine
 WORKDIR /app
 
 # Variables de entorno para optimización JVM
