@@ -173,7 +173,7 @@ CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}       # Configurable por entorno
 - **Por qué:** Orquestadores (K8s, Docker Compose) pueden reiniciar automáticamente
 
 ### 9. **Handler**
-**Decisión:** Dos versiones de API
+**Decisión:** versiones de API
 - **V1:** Versión inicial estable
 
 
@@ -197,7 +197,7 @@ CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}       # Configurable por entorno
 
 ## 🚀 Instalación y Testing
 
-Ver [README.md - Quick Start](README.md#-quick-start-5-minutos) para instalación local.
+
 
 ### Testing Manual
 
@@ -221,10 +221,8 @@ curl -X POST http://localhost:8080/api-v1/franchises \
 
 ## 🌍 Despliegue
 
-Ver [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) para instrucciones completas:
-- Local con Docker Compose
-- Railway, Render, AWS
-- MongoDB Atlas
+
+- 
 
 ---
 
@@ -303,16 +301,7 @@ Ver [settings.gradle](settings.gradle) para módulos y [main.gradle](main.gradle
 
 ---
 
-## 🐛 Troubleshooting
 
-| Problema | Solución |
-|----------|----------|
-| MongoDB no conecta | `docker run -d -p 27017:27017 mongo:8-alpine` |
-| Port 8080 en uso | Cambiar `server.port` en `application.yaml` |
-| Build falla | `./gradlew clean build -x test --refresh-dependencies` |
-| Gradle daemon error | `./gradlew --stop` |
-
-Ver [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md#troubleshooting) para más casos.
 
 ---
 
@@ -354,5 +343,14 @@ git push origin feature/nueva-funcionalidad
 - JUnit 5, Mockito
 
 
+1. Clonar el repositorio
+git clone 
 
+cd franquise-api 
+2. Editar el application.yml
+Por defecto esta el perfil dev:
+
+profiles:
+  active: "dev"
+Si se va a ejecutar en local y se deja el perfil "dev" editar el application-dev.yml y colocar la direccion de la base de datos que vas a usar
 
