@@ -1,11 +1,13 @@
+server:
+  port: 8080
+
 spring:
   application:
-    name: "franchise-api"
+    name: "FranchiseManagerApi"
   profiles:
-    active: "dev"
-  data:
-    mongodb:
-      uri: "mongodb://localhost:27017/test"
+    active: dev
+  devtools:
+    add-properties: false
 management:
   endpoints:
     web:
@@ -15,5 +17,3 @@ management:
     health:
       probes:
         enabled: true
-cors:
-  allowed-origins: "http://localhost:4200,http://localhost:8080"

@@ -36,19 +36,21 @@ sonar {
 
 apply from: './main.gradle'
 
-
-if (!tasks.named("jacocoMergedReport")) {
+if (!tasks.findByName("jacocoMergedReport")) {
     tasks.register("jacocoMergedReport", JacocoReport) {
-        dependsOn subprojects.findAll { it.tasks.named('test') }.collect { it.tasks.test }
+        group = "Reporting"
+        description = "Generates a merged Jacoco report for all subprojects"
 
-        executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/test.exec")
+        dependsOn subprojects.findAll { it.tasks.findByName('test') != null }.collect { it.tasks.test }
+
+        executionData files(subprojects.collect { file("${it.buildDir}/jacoco/test.exec") })
 
         subprojects.each { subproject ->
-            def mainSrc = "${subproject.projectDir}/src/main/java"
-            def output = "${subproject.layout.buildDirectory.get().asFile}/classes/java/main"
-            if (file(mainSrc).exists() && file(output).exists()) {
+            def mainSrc = file("${subproject.projectDir}/src/main/java")
+            def classesDir = file("${subproject.buildDir}/classes/java/main")
+            if (mainSrc.exists() && classesDir.exists()) {
                 sourceDirectories.from files(mainSrc)
-                classDirectories.from files(output)
+                classDirectories.from files(classesDir)
             }
         }
 
@@ -63,3 +65,4 @@ if (!tasks.named("jacocoMergedReport")) {
 tasks.withType(JacocoReport).matching { it.name == "jacocoTestReport" }.configureEach {
     finalizedBy("jacocoMergedReport")
 }
+
