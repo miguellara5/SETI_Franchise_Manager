@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FranchiseRequestDTO {
-
+    
     private String id;
 
 
