@@ -676,16 +676,17 @@ Copia el repositorio en tu máquina local y accede a la carpeta del proyecto:
 
 ```bash
 git clone https://github.com/miguellara5/SETI_Franchise_Manager.git
-cd SETI_Franchise_Manager
 ````
+cd SETI_Franchise_Manager
+````bash
 ###⚙️ Configuración del Proyecto
-
+````
 El proyecto utiliza perfiles de Spring Boot para gestionar los entornos.
 
 📌 Perfil activo por defecto
 
 En el archivo application.yml, el perfil activo configurado es:
-````
+````bash
 spring:
   profiles:
     active: "dev"
@@ -694,7 +695,7 @@ spring:
 📄 Archivo: application.yml
 
 Configuración general de la aplicación y endpoints de monitoreo:
-````
+````bash
 spring:
   application:
     name: "franchise-api"
@@ -718,7 +719,7 @@ cors:
 ##📄 Archivo: application-dev.yml
 
 Configuración específica para el entorno local (perfil dev):
-````
+````bash
 server:
   port: 8080
 
