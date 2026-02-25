@@ -677,10 +677,11 @@ Copia el repositorio en tu máquina local y accede a la carpeta del proyecto:
 ```bash
 git clone https://github.com/miguellara5/SETI_Franchise_Manager.git
 ````
-cd SETI_Franchise_Manager
-````bash
-###⚙️ Configuración del Proyecto
 ````
+cd SETI_Franchise_Manager
+````
+##⚙️ Configuración del Proyecto
+
 El proyecto utiliza perfiles de Spring Boot para gestionar los entornos.
 
 📌 Perfil activo por defecto
