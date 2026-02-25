@@ -235,7 +235,7 @@ Ver [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) para instrucciones completas:
 http://localhost:8080/api-v1
 ```
 
-**Colección Postman:** [Franchise_Manager_API.postman_collection.json](Franchise_Manager_API.postman_collection.json)
+**Colección Postman:** [Franchise_Manager_API.postman_collection.json](https://github.com/miguellara5/SETI_Franchise_Manager/blob/main/Prueba_SETI_pruebas__local.postman_collection.json)
 
 | Recurso | Método | Endpoint |
 |---------|--------|----------|
