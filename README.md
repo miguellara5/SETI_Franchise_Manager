@@ -158,7 +158,7 @@ SPRING_DATA_MONGODB_URI=${SPRING_DATA_MONGODB_URI}  # Obligatoria en prod
 CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}       # Configurable por entorno
 ```
 
-# 🐳 Docker – Documentación Resumida
+# 🐳 Docker 
 
 ## 🏗️ Multi-stage Build
 El uso de *multi-stage builds* permite optimizar el tamaño de la imagen final y mejorar la seguridad al no incluir herramientas de compilación en el entorno de ejecución.
@@ -665,9 +665,6 @@ git push origin feature/nueva-funcionalidad
 - MongoDB Compass
 - JUnit 5, Mockito
 
-# SETI Franchise Manager
-
-API desarrollada con **Spring Boot** para la gestión de franquicias.
 
 ---
 
@@ -693,7 +690,7 @@ spring:
   profiles:
     active: "dev"
 ````
-###🗄️ Configuración de Base de Datos (MongoDB)
+##🗄️ Configuración de Base de Datos (MongoDB)
 📄 Archivo: application.yml
 
 Configuración general de la aplicación y endpoints de monitoreo:
@@ -718,7 +715,7 @@ management:
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
 ````
-###📄 Archivo: application-dev.yml
+##📄 Archivo: application-dev.yml
 
 Configuración específica para el entorno local (perfil dev):
 ````
