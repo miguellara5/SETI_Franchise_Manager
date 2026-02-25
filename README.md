@@ -222,7 +222,324 @@ curl -X POST http://localhost:8080/api-v1/franchises \
 ## 🌍 Despliegue
 https://seti-franchise-manager.onrender.com/
 
-- 
+Coleccion para pruebas a la API desplegada
+### 🚀 Postman Collection
+
+Para probar la API, puedes copiar el siguiente JSON e importarlo directamente en Postman (**Import > Raw text**). Todos los endpoints han sido configurados para apuntar al entorno de producción en Render.
+
+<details>
+<summary><b>Click para expandir la Colección de Postman</b></summary>
+
+```json
+{
+  "info": {
+    "_postman_id": "9f5aceea-3cf9-4af6-b79b-f7c8bcbd578d",
+    "name": "Prueba_SETI_Ropa_Production",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Franquicia",
+      "item": [
+        {
+          "name": "Listar todas la informacion",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Buscar franquicia por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Exponer endpoint para agregar una nueva franquicia.",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": \"f001\",\r\n  \"name\": \"Franquicia de Ropa Central\",\r\n  \"branches\": [\r\n    {\r\n      \"name\": \"Sucursal Norte\",\r\n      \"products\": [\r\n        {\r\n          \"name\": \"Camiseta\",\r\n          \"stock\": 150\r\n        },\r\n        {\r\n          \"name\": \"Pantalon\",\r\n          \"stock\": 103\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"Sucursal Sur\",\r\n      \"products\": [\r\n        {\r\n          \"name\": \"Chaqueta\",\r\n          \"stock\": 80\r\n        },\r\n        {\r\n          \"name\": \"Gorra\",\r\n          \"stock\": 210\r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Exponer endpoint para agregar una nueva sucursal a una franquicia.",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n      \"name\": \"Sucursal Este\",\r\n      \"products\": [\r\n        {\r\n          \"name\": \"Camiseta Pro\",\r\n          \"stock\": 155\r\n        },\r\n        {\r\n          \"name\": \"Pantalon Casual\",\r\n          \"stock\": 111\r\n        }\r\n      ]\r\n    }",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001/branches",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001",
+                "branches"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Exponer endpoint para agregar un nuevo producto a una sucursal.",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Medias\",\r\n    \"stock\": 20\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001/branches/Sucursal Norte/products",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001",
+                "branches",
+                "Sucursal Norte",
+                "products"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Exponer endpoint para eliminar un nuevo producto a una sucursal.",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001/branches/Sucursal Norte/products/Medias",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001",
+                "branches",
+                "Sucursal Norte",
+                "products",
+                "Medias"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Exponer endpoint para modificar el stock de un producto.",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001/branches/Sucursal Norte/products/Medias/stock?newStock=22",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001",
+                "branches",
+                "Sucursal Norte",
+                "products",
+                "Medias",
+                "stock"
+              ],
+              "query": [
+                {
+                  "key": "newStock",
+                  "value": "22"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Exponer endpoint que permita mostrar cual es el producto que más stock tiene",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001/products/top",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001",
+                "products",
+                "top"
+              ]
+            }
+          }
+        },
+        {
+          "name": "endpoint que permita actualizar el nombre de una franquicia.",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001/name/Franquicia Ropa 1",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001",
+                "name",
+                "Franquicia Ropa 1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "actualizar el nombre de una sucursal.",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001/branch/Sucursal Norte 2/name/Sucursal Norte",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001",
+                "branch",
+                "Sucursal Norte 2",
+                "name",
+                "Sucursal Norte"
+              ]
+            }
+          }
+        },
+        {
+          "name": "actualizar el nombre de un producto.",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "url": {
+              "raw": "https://seti-franchise-manager.onrender.com/api-v1/franchises/f001/branch/Sucursal Norte/product/Camiseta/name/Camiseta Deportiva",
+              "protocol": "https",
+              "host": [
+                "seti-franchise-manager",
+                "onrender",
+                "com"
+              ],
+              "path": [
+                "api-v1",
+                "franchises",
+                "f001",
+                "branch",
+                "Sucursal Norte",
+                "product",
+                "Camiseta",
+                "name",
+                "Camiseta Deportiva"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+</details>
 
 ---
 
