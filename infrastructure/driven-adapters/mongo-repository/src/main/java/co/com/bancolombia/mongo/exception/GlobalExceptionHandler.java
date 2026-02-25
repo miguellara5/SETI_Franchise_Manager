@@ -58,14 +58,12 @@ public class GlobalExceptionHandler implements WebExceptionHandler {
                 LocalDateTime.now());
         response.setRequestId(UUID.randomUUID().toString());
 
-        // Logging
         if (errorCode.getStatus().is4xxClientError()) {
             log.warn("[{}] Client error: {}", response.getRequestId(), ex.getMessage());
         } else {
             log.error("[{}] Server error: {}", response.getRequestId(), ex.getMessage(), ex);
         }
 
-        // Prepare response
         exchange.getResponse().getHeaders().setContentType(MediaType.APPLICATION_JSON);
         exchange.getResponse().setStatusCode(errorCode.getStatus());
 
