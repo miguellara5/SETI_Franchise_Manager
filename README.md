@@ -229,7 +229,9 @@ Ver [DEPLOYMENT_GUIDE.md](DEPLOYMENT_GUIDE.md) para instrucciones completas:
 ---
 
 ## 📡 Endpoints API
+ Testing Manual con Postman
 
+Incluye todos los endpoints pre-configurados para testing local.
 ### Base URL
 ```
 http://localhost:8080/api-v1
@@ -252,6 +254,8 @@ http://localhost:8080/api-v1
 
 Para ejemplos JSON y detalles, importar colección Postman.
 
+
+
 ---
 
 ## 🧪 Testing
@@ -262,15 +266,10 @@ Para ejemplos JSON y detalles, importar colección Postman.
 # Ver reporte: build/reports/jacocoHtml/index.html
 ```
 
-**Cobertura alcanzada:** >80% en capas core
+**Cobertura alcanzada:** >80%
 <img width="1148" height="479" alt="image" src="https://github.com/user-attachments/assets/1869ed7c-11d1-4af1-a161-7bfec78db5e9" />
 
 
-### Testing Manual con Postman
-
-Importar colección: [Franchise_Manager_API.postman_collection.json](Franchise_Manager_API.postman_collection.json)
-
-Incluye todos los endpoints pre-configurados para testing local.
 
 ---
 
