@@ -202,7 +202,7 @@ Ver [README.md - Quick Start](README.md#-quick-start-5-minutos) para instalació
 ### Testing Manual
 
 **Con Postman:**
-1. Importar [Franchise_Manager_API.postman_collection.json](Franchise_Manager_API.postman_collection.json)
+1. Importar [Franchise_Manager_API.postman_collection.json](https://.postman.co/workspace/My-Workspace~d954e3ec-6e2b-49a2-80c8-d3613b1d26b0/collection/27253828-9f5aceea-3cf9-4af6-b79b-f7c8bcbd578d?action=share&creator=27253828)
 2. Asegurarse que MongoDB está corriendo en `localhost:27017`
 3. Ejecutar requests pre-configurados
 
