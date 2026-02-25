@@ -174,7 +174,7 @@ CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}       # Configurable por entorno
 ### 9. **Handlers V1 y V2**
 **Decisión:** Dos versiones de API
 - **V1:** Versión inicial estable
-- **V2:** Futuras mejoras sin romper V1 (contrato de compatibilidad)
+
 
 ---
 
