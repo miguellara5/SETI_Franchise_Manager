@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.reactivecommons.utils.ObjectMapper;
-import org.springframework.data.domain.Example;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -87,6 +86,46 @@ class AdapterOperationsTest {
 
         StepVerifier.create(adapter.findAll())
                 .expectNext(franchise)
+                .verifyComplete();
+    }
+
+    @Test
+    void testFindByIdNotFound() {
+        when(repository.findById("999")).thenReturn(Mono.empty());
+
+        StepVerifier.create(adapter.findById("999"))
+                .expectComplete()
+                .verify();
+    }
+
+    @Test
+    void testFindAllEmpty() {
+        when(repository.findAll()).thenReturn(Flux.empty());
+
+        StepVerifier.create(adapter.findAll())
+                .expectComplete()
+                .verify();
+    }
+
+    @Test
+    void testFindAllMultiple() {
+        FranchiseDocument document2 = FranchiseDocument.builder()
+                .id("2")
+                .name("Test Franchise 2")
+                .branches(Collections.emptyList())
+                .build();
+
+        Franchise franchise2 = Franchise.builder()
+                .id("2")
+                .name("Test Franchise 2")
+                .branches(Collections.emptyList())
+                .build();
+
+        when(franchiseDocumentMapper.toEntity(document2)).thenReturn(franchise2);
+        when(repository.findAll()).thenReturn(Flux.just(document, document2));
+
+        StepVerifier.create(adapter.findAll())
+                .expectNext(franchise, franchise2)
                 .verifyComplete();
     }
 }
