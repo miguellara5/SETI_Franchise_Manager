@@ -220,7 +220,7 @@ curl -X POST http://localhost:8080/api-v1/franchises \
 ---
 
 ## 🌍 Despliegue
-
+https://seti-franchise-manager.onrender.com/
 
 - 
 
@@ -342,11 +342,12 @@ git push origin feature/nueva-funcionalidad
 - MongoDB Compass
 - JUnit 5, Mockito
 
+## Como usarse
 
 1. Clonar el repositorio
 git clone 
 
-cd franquise-api 
+
 2. Editar el application.yml
 Por defecto esta el perfil dev:
 
