@@ -263,6 +263,8 @@ Para ejemplos JSON y detalles, importar colección Postman.
 ```
 
 **Cobertura alcanzada:** >80% en capas core
+<img width="1148" height="479" alt="image" src="https://github.com/user-attachments/assets/1869ed7c-11d1-4af1-a161-7bfec78db5e9" />
+
 
 ### Testing Manual con Postman
 
