@@ -341,7 +341,7 @@ git push origin feature/nueva-funcionalidad
 
 ## Prerrequisitos
 
-- Java 21 (Eclipse Temurin recomendado)
+- Java 25 (Eclipse Temurin recomendado)
 - Gradle 9.3.0+
 - Docker (opcional, para contenerización)
 - Acceso a MongoDB (local o Atlas)
