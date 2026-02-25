@@ -1,4 +1,9 @@
-# Proyecto Base Implementando Clean Architecture
+# 🏢 Franchise Manager API
+
+API reactiva para gestionar franquicias, sucursales y productos con arquitectura hexagonal implementada en Spring Boot WebFlux.
+Proyecto Base Implementando Clean Architecture
+
+---
 
 ## Antes de Iniciar
 
@@ -47,11 +52,7 @@ Este módulo es el más externo de la arquitectura, es el encargado de ensamblar
 **Los beans de los casos de uso se disponibilizan automaticamente gracias a un '@ComponentScan' ubicado en esta capa.**
 
 
-# 🏢 Franchise Manager API
 
-API reactiva para gestionar franquicias, sucursales y productos con arquitectura hexagonal implementada en Spring Boot WebFlux.
-
----
 
 ## 📋 Tabla de Contenidos
 
@@ -171,7 +172,7 @@ CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}       # Configurable por entorno
 **Decisión:** `/actuator/health` cada 30s
 - **Por qué:** Orquestadores (K8s, Docker Compose) pueden reiniciar automáticamente
 
-### 9. **Handlers V1 y V2**
+### 9. **Handler**
 **Decisión:** Dos versiones de API
 - **V1:** Versión inicial estable
 
@@ -333,6 +334,23 @@ git push origin feature/nueva-funcionalidad
 - ✅ Health checks para detectar compromiso
 - ✅ Validación de entrada en DTOs
 - ✅ Logging seguro (sin credenciales en logs)
+
+---
+
+## Prerrequisitos
+
+- Java 21 (Eclipse Temurin recomendado)
+- Gradle 9.3.0+
+- Docker (opcional, para contenerización)
+- Acceso a MongoDB (local o Atlas)
+- Git
+
+## Herramientas recomendadas
+
+- IDE: IntelliJ IDEA, VS Code, Eclipse
+- Cliente REST: Postman, Insomnia
+- MongoDB Compass
+- JUnit 5, Mockito
 
 
 
