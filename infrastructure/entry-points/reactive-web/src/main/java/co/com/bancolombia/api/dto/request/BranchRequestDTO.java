@@ -1,6 +1,7 @@
 package co.com.bancolombia.api.dto.request;
 
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class BranchRequestDTO {
 
-
+    @NotBlank
     private String name;
 
     private List<ProductRequestDTO> products;

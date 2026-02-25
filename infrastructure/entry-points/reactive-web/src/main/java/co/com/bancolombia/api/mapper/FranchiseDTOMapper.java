@@ -48,7 +48,6 @@ public class FranchiseDTOMapper {
                 .toList();
     }
 
-    // --- Domain -> Response DTO ---
     public FranchiseResponseDTO toResponse(Franchise franchise) {
         return FranchiseResponseDTO.builder()
                 .id(franchise.getId())
