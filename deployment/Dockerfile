@@ -2,6 +2,7 @@
 FROM eclipse-temurin:21-jdk-alpine AS builder
 WORKDIR /build
 COPY . .
+RUN apk add --no-cache bash git
 RUN chmod +x gradlew
 RUN ./gradlew bootJar -x test --no-daemon
 
