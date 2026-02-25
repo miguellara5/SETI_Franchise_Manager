@@ -158,23 +158,27 @@ SPRING_DATA_MONGODB_URI=${SPRING_DATA_MONGODB_URI}  # Obligatoria en prod
 CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}       # Configurable por entorno
 ```
 
-### 6. **Multi-stage Docker**
-**Decisión:** Dos fases en Dockerfile
-- **Stage 1:** Compilación (JDK 21)
-- **Stage 2:** Ejecución (JRE 21, más pequeña)
-- **Beneficio:** Imagen 70% más pequeña (~200MB vs 900MB)
+# 🐳 Docker – Documentación Resumida
 
-### 7. **Usuario no-root en Docker**
-**Decisión:** User `appuser` en contenedor
-- **Por qué:** Seguridad (evitar acceso root comprometido)
+## 🏗️ Multi-stage Build
+El uso de *multi-stage builds* permite optimizar el tamaño de la imagen final y mejorar la seguridad al no incluir herramientas de compilación en el entorno de ejecución.
 
-### 8. **Health Check**
-**Decisión:** `/actuator/health` cada 30s
-- **Por qué:** Orquestadores (K8s, Docker Compose) pueden reiniciar automáticamente
+### 🔨 Stage 1 – Build
+* **Imagen base:** `eclipse-temurin:25-jdk-alpine`
+* **Comando de compilación:**
+    ```bash
+    ./gradlew bootJar -x test -x validateStructure --no-daemon
+    ```
+    *Genera el archivo `.jar` necesario para la ejecución.*
 
-### 9. **Handler**
-**Decisión:** versiones de API
-- **V1:** Versión inicial estable
+### 🚀 Stage 2 – Runtime
+* **Imagen base:** `eclipse-temurin:25-jre-alpine`
+* **Contenido:** Solo contiene el archivo JAR final extraído del Stage 1.
+
+### ✨ Beneficios
+* **Imagen más ligera:** Menor consumo de almacenamiento y transferencia rápida.
+* **Menor superficie de ataque:** Se eliminan compiladores y dependencias innecesarias.
+* **Separación clara:** Distinción total entre el proceso de construcción y el de ejecución.
 
 
 ---
@@ -187,7 +191,7 @@ CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS}       # Configurable por entorno
 | **Reactivo** | Project Reactor | Latest |
 | **Base de Datos** | MongoDB | 8+ |
 | **Build** | Gradle | 9.3.0 |
-| **Java** | Eclipse Temurin | 21 |
+| **Java** | Eclipse Temurin | 25 |
 | **Testing** | JUnit 5, Mockito | Latest |
 | **Logging** | SLF4J + Log4j2 | Latest |
 | **Container** | Docker | Latest |
@@ -667,29 +671,33 @@ API desarrollada con **Spring Boot** para la gestión de franquicias.
 
 ---
 
-## 🚀 Cómo usarse en local
+## 🚀 Cómo usar en local
 
-### 1. Clonar el repositorio
+### 1️⃣ Clonar el repositorio
+
 Copia el repositorio en tu máquina local y accede a la carpeta del proyecto:
 
 ```bash
-git clone [https://github.com/miguellara5/SETI_Franchise_Manager.git](https://github.com/miguellara5/SETI_Franchise_Manager.git)
+git clone https://github.com/miguellara5/SETI_Franchise_Manager.git
 cd SETI_Franchise_Manager
-⚙️ Configuración del Proyecto
+````
+###⚙️ Configuración del Proyecto
+
 El proyecto utiliza perfiles de Spring Boot para gestionar los entornos.
 
-📌 Perfil Activo por Defecto
-En el archivo application.yml, el perfil activo configurado es:
+📌 Perfil activo por defecto
 
-YAML
+En el archivo application.yml, el perfil activo configurado es:
+````
 spring:
   profiles:
     active: "dev"
-🗄️ Configuración de Base de Datos (MongoDB)
-Archivo: application.yml
-Configuración general de la aplicación y endpoints de monitoreo:
+````
+###🗄️ Configuración de Base de Datos (MongoDB)
+📄 Archivo: application.yml
 
-YAML
+Configuración general de la aplicación y endpoints de monitoreo:
+````
 spring:
   application:
     name: "franchise-api"
@@ -709,10 +717,11 @@ management:
 
 cors:
   allowed-origins: "http://localhost:4200,http://localhost:8080"
-Archivo: application-dev.yml
-Configuración específica para el entorno local (perfil dev):
+````
+###📄 Archivo: application-dev.yml
 
-YAML
+Configuración específica para el entorno local (perfil dev):
+````
 server:
   port: 8080
 
@@ -724,3 +733,4 @@ spring:
 logging:
   level:
     org.springframework.web.reactive.function.server: DEBUG
+````
