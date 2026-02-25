@@ -222,7 +222,7 @@ curl -X POST http://localhost:8080/api-v1/franchises \
 ## 🌍 Despliegue
 https://seti-franchise-manager.onrender.com/
 
-Coleccion para pruebas a la API desplegada
+
 ### 🚀 Postman Collection
 
 Para probar la API, puedes copiar el siguiente JSON e importarlo directamente en Postman (**Import > Raw text**). Todos los endpoints han sido configurados para apuntar al entorno de producción en Render.
