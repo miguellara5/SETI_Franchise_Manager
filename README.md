@@ -226,6 +226,8 @@ https://seti-franchise-manager.onrender.com/
 ### 🚀 Postman Collection
 
 Para probar la API, puedes copiar el siguiente JSON e importarlo directamente en Postman (**Import > Raw text**). Todos los endpoints han sido configurados para apuntar al entorno de producción en Render.
+**⚠️ Importante:**  
+La primera petición a la API puede tardar un poco más de lo normal debido al servicio en la nube. Después de eso, las respuestas se procesan a velocidad normal.
 
 <details>
 <summary><b>Click para expandir la Colección de Postman</b></summary>
