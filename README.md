@@ -659,16 +659,66 @@ git push origin feature/nueva-funcionalidad
 - MongoDB Compass
 - JUnit 5, Mockito
 
-## Como usarse
+# SETI Franchise Manager
 
-1. Clonar el repositorio
-git clone 
+API desarrollada con **Spring Boot** para la gestión de franquicias.
 
+---
 
-2. Editar el application.yml
-Por defecto esta el perfil dev:
+## 🚀 Cómo usarse en local
 
-profiles:
-  active: "dev"
-Si se va a ejecutar en local y se deja el perfil "dev" editar el application-dev.yml y colocar la direccion de la base de datos que vas a usar
+### 1. Clonar el repositorio
+Copia el repositorio en tu máquina local y accede a la carpeta del proyecto:
 
+```bash
+git clone [https://github.com/miguellara5/SETI_Franchise_Manager.git](https://github.com/miguellara5/SETI_Franchise_Manager.git)
+cd SETI_Franchise_Manager
+⚙️ Configuración del Proyecto
+El proyecto utiliza perfiles de Spring Boot para gestionar los entornos.
+
+📌 Perfil Activo por Defecto
+En el archivo application.yml, el perfil activo configurado es:
+
+YAML
+spring:
+  profiles:
+    active: "dev"
+🗄️ Configuración de Base de Datos (MongoDB)
+Archivo: application.yml
+Configuración general de la aplicación y endpoints de monitoreo:
+
+YAML
+spring:
+  application:
+    name: "franchise-api"
+  data:
+    mongodb:
+      uri: "mongodb://localhost:27017/test"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "health,prometheus"
+  endpoint:
+    health:
+      probes:
+        enabled: true
+
+cors:
+  allowed-origins: "http://localhost:4200,http://localhost:8080"
+Archivo: application-dev.yml
+Configuración específica para el entorno local (perfil dev):
+
+YAML
+server:
+  port: 8080
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/first_db
+
+logging:
+  level:
+    org.springframework.web.reactive.function.server: DEBUG
