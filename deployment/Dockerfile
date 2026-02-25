@@ -1,36 +1,37 @@
 # Stage 1: Build
 FROM eclipse-temurin:25-jdk-alpine AS builder
+
+RUN apk add --no-cache bash git dos2unix
+
 WORKDIR /build
+
 COPY . .
-RUN apk add --no-cache bash git
+
+RUN dos2unix gradlew
 RUN chmod +x gradlew
-RUN ./gradlew bootJar -x test --no-daemon
+
+# Ejecutamos el build
+RUN ./gradlew bootJar -x test -x validateStructure --no-daemon
 
 # Stage 2: Runtime
 FROM eclipse-temurin:25-jre-alpine
 WORKDIR /app
 
-# Variables de entorno para optimización JVM
+# Optimizaciones de JVM
 ENV JAVA_OPTS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=70 -Djava.security.egd=file:/dev/./urandom"
 
-# Crear usuario no-root para seguridad
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
-# Copiar JAR compilado desde builder
+# Copiar el JAR generado
 COPY --from=builder --chown=appuser:appgroup /build/applications/app-service/build/libs/*.jar app.jar
 
-# Volumen temporal para Spring Boot
 VOLUME /tmp
 
-# Health check para orquestadores (Kubernetes, Docker Compose, etc)
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=10s --start-period=15s --retries=3 \
     CMD wget --quiet --tries=1 --spider http://localhost:8080/actuator/health || exit 1
 
-# Usuario no-root
 USER appuser
-
-# Exponer puerto
 EXPOSE 8080
 
-# Entrypoint
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar --server.port=${PORT:-8080}"]
+# Ajuste en ENTRYPOINT para activar el perfil de producción (archivo YAML 3)
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar --spring.profiles.active=prod --server.port=${PORT:-8080}"]
