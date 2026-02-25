@@ -39,14 +39,12 @@ public class MongoRepositoryAdapter extends AdapterOperations<Franchise, Franchi
     public Mono<Franchise> save(Franchise franchise) {
         return repository.findById(franchise.getId())
                 .flatMap(existing -> {
-                    // Si ya existe, solo actualiza
                     FranchiseDocument updatedDoc = franchiseDocumentMapper.toDocument(franchise);
                     return repository.save(updatedDoc)
                             .doOnNext(doc -> log.info("Franchise updated with ID: {}", doc.getId()))
                             .map(franchiseDocumentMapper::toEntity);
                 })
                 .switchIfEmpty(
-                        // Si no existe, validamos duplicado por nombre
                         repository.findAll()
                                 .filter(doc -> doc.getName().equalsIgnoreCase(franchise.getName()))
                                 .hasElements()

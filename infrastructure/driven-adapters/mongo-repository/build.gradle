@@ -10,4 +10,9 @@ dependencies {
     testImplementation 'org.reactivecommons.utils:object-mapper:0.1.0'
 
     implementation 'org.springframework.boot:spring-boot-starter-webflux'
+
+    // Jackson para tests
+    testImplementation 'com.fasterxml.jackson.core:jackson-databind'
+    testImplementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
 }

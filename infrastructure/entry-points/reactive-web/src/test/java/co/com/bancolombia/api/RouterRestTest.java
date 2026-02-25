@@ -12,7 +12,7 @@ import co.com.bancolombia.usecase.franchise.FranchiseUseCase;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
+import org.springframework.boot.webflux.test.autoconfigure.WebFluxTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
@@ -42,14 +42,13 @@ class RouterRestTest {
 
     @Test
     void testFindAllFranchises() {
-        // Given
+
         Franchise franchise = createSampleFranchise();
         FranchiseResponseDTO responseDTO = createSampleResponseDTO();
 
         when(franchiseUseCase.findAll()).thenReturn(Flux.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
-        // When & Then
         webTestClient.get()
                 .uri("/api-v1/franchises")
                 .accept(MediaType.APPLICATION_JSON)
@@ -65,7 +64,7 @@ class RouterRestTest {
 
     @Test
     void testFindFranchiseById() {
-        // Given
+
         String franchiseId = "123";
         Franchise franchise = createSampleFranchise();
         FranchiseResponseDTO responseDTO = createSampleResponseDTO();
@@ -73,7 +72,7 @@ class RouterRestTest {
         when(franchiseUseCase.findById(franchiseId)).thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
-        // When & Then
+
         webTestClient.get()
                 .uri("/api-v1/franchises/{id}", franchiseId)
                 .accept(MediaType.APPLICATION_JSON)
@@ -88,11 +87,10 @@ class RouterRestTest {
 
     @Test
     void testFindFranchiseByIdNotFound() {
-        // Given
+
         String franchiseId = "999";
         when(franchiseUseCase.findById(franchiseId)).thenReturn(Mono.empty());
 
-        // When & Then
         webTestClient.get()
                 .uri("/api-v1/franchises/{id}", franchiseId)
                 .accept(MediaType.APPLICATION_JSON)
@@ -102,7 +100,7 @@ class RouterRestTest {
 
     @Test
     void testSaveFranchise() {
-        // Given
+
         FranchiseRequestDTO requestDTO = createSampleRequestDTO();
         Franchise franchise = createSampleFranchise();
         FranchiseResponseDTO responseDTO = createSampleResponseDTO();
@@ -111,7 +109,7 @@ class RouterRestTest {
         when(franchiseUseCase.save(any(Franchise.class))).thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
-        // When & Then
+
         webTestClient.post()
                 .uri("/api-v1/franchises")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -127,7 +125,7 @@ class RouterRestTest {
 
     @Test
     void testAddBranchToFranchise() {
-        // Given
+
         String franchiseId = "123";
         Branch branch = createSampleBranch();
         Franchise franchise = createSampleFranchise();
@@ -136,7 +134,7 @@ class RouterRestTest {
         when(franchiseUseCase.addBranchToFranchise(eq(franchiseId), any(Branch.class))).thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
-        // When & Then
+
         webTestClient.post()
                 .uri("/api-v1/franchises/{id}/branches", franchiseId)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -152,7 +150,7 @@ class RouterRestTest {
 
     @Test
     void testAddProductToBranch() {
-        // Given
+
         String franchiseId = "123";
         String branchName = "Main Branch";
         Product product = createSampleProduct();
@@ -163,7 +161,7 @@ class RouterRestTest {
                 .thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
-        // When & Then
+
         webTestClient.post()
                 .uri("/api-v1/franchises/{id}/branches/{branchName}/products", franchiseId, branchName)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -179,7 +177,7 @@ class RouterRestTest {
 
     @Test
     void testRemoveProductFromBranch() {
-        // Given
+
         String franchiseId = "123";
         String branchName = "Main Branch";
         String productName = "Product A";
@@ -190,7 +188,7 @@ class RouterRestTest {
                 .thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
-        // When & Then
+
         webTestClient.delete()
                 .uri("/api-v1/franchises/{id}/branches/{branchName}/products/{productName}",
                         franchiseId, branchName, productName)
@@ -205,7 +203,7 @@ class RouterRestTest {
 
     @Test
     void testUpdateProductStock() {
-        // Given
+
         String franchiseId = "123";
         String branchName = "Main Branch";
         String productName = "Product A";
@@ -217,7 +215,7 @@ class RouterRestTest {
                 .thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
-        // When & Then
+
         webTestClient.patch()
                 .uri("/api-v1/franchises/{id}/branches/{branchName}/products/{productName}/stock?newStock={newStock}",
                         franchiseId, branchName, productName, newStock)
@@ -232,7 +230,7 @@ class RouterRestTest {
 
     @Test
     void testUpdateProductStockWithDefaultValue() {
-        // Given
+
         String franchiseId = "123";
         String branchName = "Main Branch";
         String productName = "Product A";
@@ -243,7 +241,7 @@ class RouterRestTest {
                 .thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
-        // When & Then
+
         webTestClient.patch()
                 .uri("/api-v1/franchises/{id}/branches/{branchName}/products/{productName}/stock",
                         franchiseId, branchName, productName)
@@ -257,6 +255,7 @@ class RouterRestTest {
 
     @Test
     void testGetTopProductsPerBranch() {
+
         String franchiseId = "123";
 
         TopStockProduct domainTopProduct = TopStockProduct.builder()
@@ -270,7 +269,7 @@ class RouterRestTest {
         when(franchiseUseCase.getTopProducts(franchiseId))
                 .thenReturn(Flux.just(domainTopProduct));
 
-        // When & Then
+
         webTestClient.get()
                 .uri("/api-v1/franchises/{id}/products/top", franchiseId)
                 .accept(MediaType.APPLICATION_JSON)
@@ -296,6 +295,7 @@ class RouterRestTest {
         when(franchiseUseCase.updateFranchiseName(franchiseId, newName)).thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
 
+
         webTestClient.put()
                 .uri("/api-v1/franchises/{id}/name/{newName}", franchiseId, newName)
                 .exchange()
@@ -309,7 +309,7 @@ class RouterRestTest {
 
     @Test
     void testUpdateBranchName() {
-        // Given
+
         String franchiseId = "123";
         String currentName = "Old Branch";
         String newName = "New Branch";
@@ -318,6 +318,7 @@ class RouterRestTest {
 
         when(franchiseUseCase.updateBranchName(franchiseId, currentName, newName)).thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
+
 
         webTestClient.put()
                 .uri("/api-v1/franchises/{id}/branch/{currentName}/name/{newName}",
@@ -333,6 +334,7 @@ class RouterRestTest {
 
     @Test
     void testUpdateProductName() {
+
         String franchiseId = "123";
         String branchName = "Main Branch";
         String currentName = "Old Product";
@@ -343,6 +345,7 @@ class RouterRestTest {
         when(franchiseUseCase.updateProductName(franchiseId, branchName, currentName, newName))
                 .thenReturn(Mono.just(franchise));
         when(mapper.toResponse(any(Franchise.class))).thenReturn(responseDTO);
+
 
         webTestClient.put()
                 .uri("/api-v1/franchises/{id}/branch/{branchName}/product/{currentName}/name/{newName}",
@@ -358,9 +361,11 @@ class RouterRestTest {
 
     @Test
     void testFindByIdWithError() {
+
         String franchiseId = "123";
         when(franchiseUseCase.findById(franchiseId))
                 .thenReturn(Mono.error(new RuntimeException("Database error")));
+
 
         webTestClient.get()
                 .uri("/api-v1/franchises/{id}", franchiseId)
@@ -371,6 +376,7 @@ class RouterRestTest {
 
     @Test
     void testSaveWithInvalidPayload() {
+
         webTestClient.post()
                 .uri("/api-v1/franchises")
                 .contentType(MediaType.APPLICATION_JSON)
@@ -381,8 +387,10 @@ class RouterRestTest {
 
     @Test
     void testGetTopProductsEmpty() {
+
         String franchiseId = "123";
         when(franchiseUseCase.getTopProducts(franchiseId)).thenReturn(Flux.empty());
+
 
         webTestClient.get()
                 .uri("/api-v1/franchises/{id}/products/top", franchiseId)
@@ -394,6 +402,7 @@ class RouterRestTest {
                     Assertions.assertThat(products).isEmpty();
                 });
     }
+
 
     private Franchise createSampleFranchise() {
         return Franchise.builder()
