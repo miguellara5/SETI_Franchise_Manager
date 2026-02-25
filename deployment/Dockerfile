@@ -2,6 +2,7 @@
 FROM eclipse-temurin:21-jdk-alpine AS builder
 WORKDIR /build
 COPY . .
+RUN chmod +x gradlew
 RUN ./gradlew bootJar -x test --no-daemon
 
 # Stage 2: Runtime
@@ -31,4 +32,4 @@ USER appuser
 EXPOSE 8080
 
 # Entrypoint
-ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
+ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar --server.port=${PORT:-8080}"]
