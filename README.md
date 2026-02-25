@@ -9,7 +9,7 @@ Proyecto Base Implementando Clean Architecture
 
 Empezaremos por explicar los diferentes componentes del proyectos y partiremos de los componentes externos, continuando con los componentes core de negocio (dominio) y por último el inicio y configuración de la aplicación.
 
-Lee el artículo [Clean Architecture — Aislando los detalles](https://medium.com/bancolombia-tech/clean-architecture-aislando-los-detalles-4f9530f35d7a)
+Lee el artículo [Scaffolding of Clean Architecture](https://bancolombia.github.io/scaffold-clean-architecture/docs/tasks/generate-model/)
 
 # Arquitectura
 
